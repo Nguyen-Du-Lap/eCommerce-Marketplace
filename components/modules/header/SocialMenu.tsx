@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 
 export default function SocialMenu({ className }: { className?: string }){
     return (
-        <div className={cn("bg-secondary-700 h[52px]", className)}>
+        <div className={cn("bg-secondary-700 h-[52px]", className)}>
             <Container>
                 <div className='flex items-center justify-between h-full'>
                     {/* left content */}
@@ -17,9 +17,9 @@ export default function SocialMenu({ className }: { className?: string }){
                         <p className='text-white'>Welcome to Orion online eCommerce store. </p>
                     </div>
                     {/* right content */}
-                    <div className='flex items-center space-x-4'>
+                    <div className='flex items-center space-x-4 h-5'>
                         <SocialIcons className='text-white'/>
-                        <Separator orientation='vertical' className='h-7 bg-white' />
+                        <Separator className="bg-white/10 w-1"  orientation="vertical"  />
                         <LanguageCurrency className='text-white'/>
 
                     </div>

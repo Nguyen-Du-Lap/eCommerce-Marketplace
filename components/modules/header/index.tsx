@@ -10,7 +10,7 @@ export default function Header() {
     <header>
       <SocialMenu className="hidden lg:block"/>
       <MainMenu />
-      <Menus />
+      <Menus className="hidden lg:block"/>
     </header>
   );
 }

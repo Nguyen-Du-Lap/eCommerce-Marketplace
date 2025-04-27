@@ -103,13 +103,15 @@
   --font-weight-black: 900;
    
    /* === Font sizes === */
-   --font-size-sm: 0.8rem;
-   --font-size-base: 1rem;
-   --font-size-xl: 1.25rem;
-   --font-size-2xl: 1.563rem;
-   --font-size-3xl: 1.953rem;
-   --font-size-4xl: 2.441rem;
-   --font-size-5xl: 3.052rem;
+   --font-size-sm: 0.8rem;    /* 12.8px */
+   --font-size-base: 1rem;    /* 16px */
+   --font-size-xl: 1.25rem;   /* 20px */
+   --font-size-2xl: 1.563rem; /* 25px */
+   --font-size-3xl: 1.953rem; /* 31.25px */
+   --font-size-4xl: 2.441rem; /* 39px */
+   --font-size-5xl: 3.052rem; /* 48.83px */
+   --font-size-6xl: 4rem; /* 48.83px */
+
  
    --font-size-h1: 5rem;
    --line-height-h1: 5rem;
@@ -323,4 +325,208 @@
     line-height: var(--line-height-span);
     font-weight: var(--font-weight-span);
   }
+
+  .display-1 {
+    font-size: var(--font-size-6xl);
+    line-height: 72px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .display-2 {
+    font-size: 56px;
+    line-height: 64px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .display-3 {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .display-4 {
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .display-5 {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .label-1 {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .label-2 {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .label-3 {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .label-4 {
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .label-5 {
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .body-XXL {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .body-XL-400 {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .body-XL-500 {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .body-XL-600 {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .body-L-400 {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .body-L-500 {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .body-L-600 {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .body-M-400 {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .body-M-500 {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .body-M-600 {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .body-S-400 {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .body-S-500 {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .body-S-600 {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .body-tiny-400 {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .body-tiny-500 {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .body-tiny-600 {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .body-XS-400 {
+    font-size: 11px;
+    line-height: 12px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .body-XS-500 {
+    font-size: 11px;
+    line-height: 12px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .body-XS-600 {
+    font-size: 11px;
+    line-height: 12px;
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
 }

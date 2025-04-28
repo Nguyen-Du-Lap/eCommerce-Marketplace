@@ -24,7 +24,7 @@ export default function LanguageCurrency({
     // TODO: change currency
   };
   return (
-    <div className={cn( "flex items-center",className)}>
+    <div className={cn(className,"flex items-center")}>
       <Select
         onValueChange={(value) => switchLocale(value)}
         defaultValue={"en"}

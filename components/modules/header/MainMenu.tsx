@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Logo from "./Logo";
+import Logo from "../../custom/Logo";
 import SearchInput from "./SearchInput";
 import IconGroup from "./IconGroup";
 import Container from "@/components/custom/Container";

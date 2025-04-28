@@ -44,54 +44,107 @@
 }
 
 @theme {
-   /* === Font family === */
-   --font-display: system-ui, sans-serif;
+  /* === Font family === */
+  --font-display: system-ui, sans-serif;
 
-   /* === Spacing unit === */
-   --spacing: 0.25rem;
- 
-   /* === Breakpoints === */
-   --breakpoint-xs: 360px;
-   --breakpoint-sm: 575px;
-   --breakpoint-md: 768px;
-   --breakpoint-lg: 1024px;
-   --breakpoint-xl: 1280px;
-   --breakpoint-2xl: 1440px;
-   --breakpoint-3xl: 1680px;
-   --breakpoint-4xl: 1920px;
- 
-   /* === Colors: Primary === */
-   --color-primary-50: #FFF3EB;
-   --color-primary-100: #FFE7D6;
-   --color-primary-200: #FFCEAD;
-   --color-primary-300: #FFB685;
-   --color-primary-400: #FF9D5C;
-   --color-primary-500: #FA8232;
-   --color-primary-600: #DE732D;
-   --color-primary-700: #99501F;
-   --color-primary-800: #663514;
-   --color-primary-900: #331B0A;
- 
-   /* === Colors: Secondary === */
-   --color-secondary-50: #EAF6FE;
-   --color-secondary-100: #D5EDFD;
-   --color-secondary-200: #ABDBFA;
-   --color-secondary-300: #81C9F8;
-   --color-secondary-400: #57B7F5;
-   --color-secondary-500: #2DA5F3;
-   --color-secondary-600: #2484C2;
-   --color-secondary-700: #1B6392;
-   --color-secondary-800: #124261;
-   --color-secondary-900: #092131;
- 
-   /* === Màu mặc định === */
-   --color-white: #ffffff;
-   --color-black: #000000;
-   --color-heading: #979798;
-   --color-body: #334155; /* slate-700 */
-   --color-background: #f3f4f6; /* gray-100 */
+  /* === Spacing unit === */
+  --spacing: 0.25rem;
 
-   /* === Font weight */
+  /* === Breakpoints === */
+  --breakpoint-xs: 320px;
+  --breakpoint-tiny: 360px;
+  --breakpoint-sm: 575px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1680px;
+  --breakpoint-4xl: 1920px;
+
+  /* === Colors: Gray === */
+  --color-gray-00: #FFFFFF;
+  --color-gray-50: #F2F4F5;
+  --color-gray-100: #E4E7E9;
+  --color-gray-200: #C9CFD2;
+  --color-gray-300: #ADB7BC;
+  --color-gray-400: #929FA5;
+  --color-gray-500: #77878F;
+  --color-gray-600: #5F6C72;
+  --color-gray-700: #475156;
+  --color-gray-800: #303639;
+  --color-gray-900: #191C1F;
+
+  /* === Colors: Primary === */
+  --color-primary-50: #FFF3EB;
+  --color-primary-100: #FFE7D6;
+  --color-primary-200: #FFCEAD;
+  --color-primary-300: #FFB685;
+  --color-primary-400: #FF9D5C;
+  --color-primary-500: #FA8232;
+  --color-primary-600: #DE732D;
+  --color-primary-700: #99501F;
+  --color-primary-800: #663514;
+  --color-primary-900: #331B0A;
+
+  /* === Colors: Secondary === */
+  --color-secondary-50: #EAF6FE;
+  --color-secondary-100: #D5EDFD;
+  --color-secondary-200: #ABDBFA;
+  --color-secondary-300: #81C9F8;
+  --color-secondary-400: #57B7F5;
+  --color-secondary-500: #2DA5F3;
+  --color-secondary-600: #2484C2;
+  --color-secondary-700: #1B6392;
+  --color-secondary-800: #124261;
+  --color-secondary-900: #092131;
+
+  /* === Colors: Success === */
+  --color-success-50: #EAF7E9;
+  --color-success-100: #D5F0D3;
+  --color-success-200: #ABE0A7;
+  --color-success-300: #81D17C;
+  --color-success-400: #57C150;
+  --color-success-500: #2DB224;
+  --color-success-600: #248E1D;
+  --color-success-700: #1B6B16;
+  --color-success-800: #12470E;
+  --color-success-900: #092407;
+
+  /* === Colors: Warning === */
+  --color-warning-50: #FDFAE7;
+  --color-warning-100: #FBF4CE;
+  --color-warning-200: #F7E99E;
+  --color-warning-300: #F3DE6D;
+  --color-warning-400: #EFD33D;
+  --color-warning-500: #EBC80C;
+  --color-warning-600: #BCA00A;
+  --color-warning-700: #8D7807;
+  --color-warning-800: #5E5005;
+  --color-warning-900: #2F2802;
+
+  /* === Colors: Danger === */
+  --color-danger-50: #FDEEEE;
+  --color-danger-100: #FCDEDE;
+  --color-danger-200: #F8BCBC;
+  --color-danger-300: #F59B9B;
+  --color-danger-400: #F17979;
+  --color-danger-500: #EE5858;
+  --color-danger-600: #BE4646;
+  --color-danger-700: #8F3535;
+  --color-danger-800: #5F2323;
+  --color-danger-900: #301212;
+
+
+  /* === Màu mặc định === */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-heading: #979798;
+  --color-body: #334155;
+  /* slate-700 */
+  --color-background: #f3f4f6;
+  /* gray-100 */
+
+  /* === Font weight */
   --font-weight-thin: 100;
   --font-weight-extralight: 200;
   --font-weight-light: 300;
@@ -101,52 +154,60 @@
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
   --font-weight-black: 900;
-   
-   /* === Font sizes === */
-   --font-size-sm: 0.8rem;    /* 12.8px */
-   --font-size-base: 1rem;    /* 16px */
-   --font-size-xl: 1.25rem;   /* 20px */
-   --font-size-2xl: 1.563rem; /* 25px */
-   --font-size-3xl: 1.953rem; /* 31.25px */
-   --font-size-4xl: 2.441rem; /* 39px */
-   --font-size-5xl: 3.052rem; /* 48.83px */
-   --font-size-6xl: 4rem; /* 48.83px */
 
- 
-   --font-size-h1: 5rem;
-   --line-height-h1: 5rem;
-   --letter-spacing-h1: 0.0375;
-   --font-weight-h1: 700;
- 
-   --font-size-h2: 3rem;
-   --line-height-h2: 4rem;
-   --letter-spacing-h2: 0.035;
-   --font-weight-h2: 700;
- 
-   --font-size-h3: 2.5rem;
-   --line-height-h3: 3.5rem;
-   --letter-spacing-h3: 0.05;
-   --font-weight-h3: 700;
- 
-   --font-size-h4: 2rem;
-   --line-height-h4: 2.75rem;
-   --letter-spacing-h4: 0;
-   --font-weight-h4: 700;
- 
-   --font-size-h5: 1.5rem;
-   --line-height-h5: 2.5rem;
-   --letter-spacing-h5: 0;
-   --font-weight-h5: 600;
- 
-   --font-size-p: 0.875rem;
-   --line-height-p: 1.5rem;
-   --font-weight-p: 400;
- 
-   --font-size-body: 1rem;
-   --line-height-body: 1.5rem;
- 
-   --font-size-span: 0.75rem;
-   --line-height-span: 1.5rem;
+  /* === Font sizes === */
+  --font-size-sm: 0.8rem;
+  /* 12.8px */
+  --font-size-base: 1rem;
+  /* 16px */
+  --font-size-xl: 1.25rem;
+  /* 20px */
+  --font-size-2xl: 1.563rem;
+  /* 25px */
+  --font-size-3xl: 1.953rem;
+  /* 31.25px */
+  --font-size-4xl: 2.441rem;
+  /* 39px */
+  --font-size-5xl: 3.052rem;
+  /* 48.83px */
+  --font-size-6xl: 4rem;
+  /* 48.83px */
+
+
+  --font-size-h1: 5rem;
+  --line-height-h1: 5rem;
+  --letter-spacing-h1: 0.0375;
+  --font-weight-h1: 700;
+
+  --font-size-h2: 3rem;
+  --line-height-h2: 4rem;
+  --letter-spacing-h2: 0.035;
+  --font-weight-h2: 700;
+
+  --font-size-h3: 2.5rem;
+  --line-height-h3: 3.5rem;
+  --letter-spacing-h3: 0.05;
+  --font-weight-h3: 700;
+
+  --font-size-h4: 2rem;
+  --line-height-h4: 2.75rem;
+  --letter-spacing-h4: 0;
+  --font-weight-h4: 700;
+
+  --font-size-h5: 1.5rem;
+  --line-height-h5: 2.5rem;
+  --letter-spacing-h5: 0;
+  --font-weight-h5: 600;
+
+  --font-size-p: 0.875rem;
+  --line-height-p: 1.5rem;
+  --font-weight-p: 400;
+
+  --font-size-body: 1rem;
+  --line-height-body: 1.5rem;
+
+  --font-size-span: 0.75rem;
+  --line-height-span: 1.5rem;
 }
 
 :root {

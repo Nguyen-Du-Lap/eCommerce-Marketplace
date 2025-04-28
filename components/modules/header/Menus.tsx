@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/custom/Container";
-import { RectangleButton } from "@/components/ui/rectangleButton";
+import { RectangleButton } from "@/components/custom/RectangleButton";
 import { cn } from "@/lib/utils";
 import { ArrowsCounterClockwise, CaretUp, Headphones, Info, MapPinLine, PhoneCall } from "@phosphor-icons/react";
 import Link from "next/link";

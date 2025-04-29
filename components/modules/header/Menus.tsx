@@ -14,8 +14,9 @@ import {
 import Link from "next/link";
 import React from "react";
 import CategoryList from "./CategoryList";
+import { TypeCategoryModel } from "@/types/models";
 
-export default function Menus({ className }: { className?: string }) {
+export default function Menus({ className, categories }: { className?: string, categories: TypeCategoryModel[] }) {
   return (
     <div
       className={cn(
@@ -33,7 +34,7 @@ export default function Menus({ className }: { className?: string }) {
                 all category
                 <CaretUp size={16} />
               </RectangleButton>
-              <CategoryList />
+              <CategoryList categories={categories}/>
             </div>
 
             {/* page */}

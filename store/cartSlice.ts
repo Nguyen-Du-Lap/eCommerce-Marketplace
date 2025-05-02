@@ -5,9 +5,8 @@ export interface CartState {
     cartItems: CartItem[];
 }
 
-const initialState = {
+const initialState: CartState = {
     cartItems: [],
-
 }
 
 // create const slice for cart
@@ -15,10 +14,13 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        // add item to cart
+        addToCart: (state, action) => {
+            state.cartItems.push(action.payload);
+        }
+
     },
 })
 
 //export 
 export default cartSlice.reducer;
-export const {} = cartSlice.actions;
+export const { addToCart } = cartSlice.actions;

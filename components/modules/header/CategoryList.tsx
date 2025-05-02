@@ -1,5 +1,6 @@
 "use client";
 
+import { addToCart } from "@/store/cartSlice";
 import {
   TypeCategoryModel,
   TypeProductModel,
@@ -7,8 +8,11 @@ import {
 } from "@/types/models";
 import { CaretRight } from "@phosphor-icons/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 export default function CategoryList({
   categories,
@@ -21,18 +25,38 @@ export default function CategoryList({
 }) {
   const router = useRouter();
   const filterProducts = products?.filter((item) => item.featured === true);
+  const dispatch = useDispatch();
+
+  const handleAddCampaignProduct = (product: TypeProductModel) => {
+    console.log("add to cart", product);
+    dispatch(
+      addToCart({
+        store: product.store,
+        variant: product.productVariants[0],
+        productName: product.name,
+        productImage: product.images[0].url,
+        qty: 1,
+      })
+    );
+    toast.success(`${product.name} added to cart!`, {
+      duration: 3000,
+      description: "View your shopping cart to checkout",
+    });
+  };
+
   return (
     <div className="absolute h-[420px] w-[240px] shadow-xl top-[64px] border border-zinc-300 py-1.5">
       <ul>
         {categories.map((item: TypeCategoryModel, idx) => (
           <li
-            onClick={() => router.push(`/categories/${item.slug}/products`)}
             key={idx}
             className="h-[36px]  capitalize w-full flex items-center justify-between px-4 group cursor-pointer text-gray-600 hover:text-gray-900 hover:bg-gray-50"
           >
-            <span className="body-S-400 group-hover:font-medium">
-              {item.name}
-            </span>
+            <Link href={`/categories/${item.slug}/products`}>
+              <span className="body-S-400 group-hover:font-medium">
+                {item.name}
+              </span>
+            </Link>
 
             {item.subCategory.length > 0 && (
               <>
@@ -92,7 +116,15 @@ export default function CategoryList({
                     </div>
                   </div>
                   {campaigns.length > 0 ? (
-                    <div className="bg-cover" style={{backgroundImage: `url(${campaigns[0].image})`}}></div>
+                    <div
+                      className="bg-cover"
+                      onClick={() =>
+                        handleAddCampaignProduct(
+                          campaigns[0].slideItem[0].product
+                        )
+                      }
+                      style={{ backgroundImage: `url(${campaigns[0].image})` }}
+                    ></div>
                   ) : (
                     <div className="bg-[url('/images/sub_banner.svg')] bg-cover"></div>
                   )}

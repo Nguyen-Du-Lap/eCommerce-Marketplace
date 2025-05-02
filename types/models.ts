@@ -116,7 +116,7 @@ export type TypeProductModel = {
   questions: TypeQuestionModel[];
   reviews: TypeReviewModel[];
   productVariants: TypeProductVariantModel[];
-  images: string[];
+  images: TypeImageModel[];
   price: number;
   discount: number;
   seoSlug?: string;
@@ -309,7 +309,7 @@ export type TypeSlideModel = {
   image: string;
   user_id: string;
   status: "draft" | "publish" | "archive";
-  slideItem: string[];
+  slideItem: TypeSlideItemModel[];
   createdAt: Date;
 };
 

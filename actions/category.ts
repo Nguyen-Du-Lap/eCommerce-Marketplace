@@ -1,4 +1,4 @@
-
+'use server';
 import axios from "axios";
 
 export const getCategory = async () => {

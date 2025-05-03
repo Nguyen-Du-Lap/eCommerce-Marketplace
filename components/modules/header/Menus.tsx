@@ -12,7 +12,7 @@ import {
   PhoneCall,
 } from "@phosphor-icons/react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import CategoryList from "./CategoryList";
 import {
   TypeCategoryModel,
@@ -31,6 +31,9 @@ export default function Menus({
   products: TypeProductModel[];
   campaigns: TypeSlideModel[];
 }) {
+
+  // state
+  const [showCat, setShowCat] = useState(false);
   return (
     <div
       className={cn(
@@ -44,11 +47,15 @@ export default function Menus({
           <div className="flex items-center justify-between h-full gap-[24px]">
             {/* category */}
             <div className="relative">
-              <RectangleButton className="capitalize flex items-center h-[48px] w-[154px] bg-gray-50 text-gray-900">
+              <RectangleButton onClick={() => setShowCat(!showCat)} className={cn("capitalize flex items-center h-[48px] w-[154px] bg-gray-50 text-gray-900", showCat && "bg-primary-500 text-white")} variant="default" size="default">
                 all category
-                <CaretUp size={16} />
+                {
+                  showCat ? <CaretUp size={16} /> : <CaretUp size={16} className="rotate-180" />
+                }
               </RectangleButton>
-              <CategoryList categories={categories} products={products} campaigns={campaigns} />
+              {
+                showCat && (<CategoryList categories={categories} products={products} campaigns={campaigns} />)
+              }
             </div>
 
             {/* page */}

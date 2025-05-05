@@ -208,30 +208,30 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
-  --font-size-h1: 5rem;
-  --line-height-h1: 5rem;
-  --letter-spacing-h1: 0.0375;
-  --font-weight-h1: 700;
+  --font-size-h1: 32px;
+  --line-height-h1: 40px;
+  --letter-spacing-h1: 0;
+  --font-weight-h1: 600;
 
-  --font-size-h2: 3rem;
-  --line-height-h2: 4rem;
-  --letter-spacing-h2: 0.035;
-  --font-weight-h2: 700;
+  --font-size-h2: 28px;
+  --line-height-h2: 32px;
+  --letter-spacing-h2: 0;
+  --font-weight-h2: 600;
 
-  --font-size-h3: 2.5rem;
-  --line-height-h3: 3.5rem;
-  --letter-spacing-h3: 0.05;
-  --font-weight-h3: 700;
+  --font-size-h3: 24px;
+  --line-height-h3: 32px;
+  --letter-spacing-h3: 0;
+  --font-weight-h3: 600;
 
-  --font-size-h4: 2rem;
-  --line-height-h4: 2.75rem;
-  --letter-spacing-h4: 0;
+  --font-size-h4: 16px;
+  --line-height-h4: 52px;
+  --letter-spacing-h4: 1%;
   --font-weight-h4: 700;
 
-  --font-size-h5: 1.5rem;
-  --line-height-h5: 2.5rem;
-  --letter-spacing-h5: 0;
-  --font-weight-h5: 600;
+  --font-size-h5: 14px;
+  --line-height-h5: 48px;
+  --letter-spacing-h5: 1.2%;
+  --font-weight-h5: 700;
 
   --font-size-p: 0.875rem;
   --line-height-p: 1.5rem;

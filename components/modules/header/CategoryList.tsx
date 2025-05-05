@@ -45,7 +45,7 @@ export default function CategoryList({
   };
 
   return (
-    <div className="absolute bg-white h-[420px] w-[240px] shadow-xl top-[64px] border border-zinc-300 py-1.5">
+    <div className="absolute bg-white h-[420px] w-[240px] shadow-xl top-[64px] border border-zinc-300 py-1.5 z-100">
       <ul>
         {categories.map((item: TypeCategoryModel, idx) => (
           <li

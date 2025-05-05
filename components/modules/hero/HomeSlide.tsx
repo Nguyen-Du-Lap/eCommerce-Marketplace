@@ -14,10 +14,10 @@ export default function HomeSlide() {
               src="/images/hero/left.png"
               alt="Banner"
               fill
-              className="object-cover"
+              className="object-cover z-1"
             />
           </div>
-          <div className="col-span-4 border">
+          <div className="col-span-4">
             <div className="flex flex-col gap-y-[24px]">
               <Image
                 src="/images/hero/top.png"

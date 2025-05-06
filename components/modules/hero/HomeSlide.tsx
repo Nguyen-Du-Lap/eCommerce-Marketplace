@@ -9,7 +9,7 @@ export default function HomeSlide() {
     <section className="my-[24px]">
       <Container>
         <div className="grid grid-cols-12 gap-x-[24px]">
-          <div className="col-span-8 relative aspect-[872/520]">
+          <div className="col-span-12 sm:col-span-8 relative aspect-[872/520]">
             <Image
               src="/images/hero/left.png"
               alt="Banner"
@@ -17,7 +17,7 @@ export default function HomeSlide() {
               className="object-cover z-1"
             />
           </div>
-          <div className="col-span-4">
+          <div className="hidden sm:block col-span-4">
             <div className="flex flex-col gap-y-[24px]">
               <Image
                 src="/images/hero/top.png"

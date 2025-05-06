@@ -36,7 +36,7 @@ export default function Newsletter() {
           </div>
 
           {/* logo */}
-          <div className="flex items-center gap-12 justify-center opacity-60">
+          <div className="flex items-center gap-12 justify-center opacity-60 flex-wrap">
             <Image src="/images/logos/google.png" width={72} height={72} alt="logo"/>
             <Image src="/images/logos/amazon.png" width={72} height={72} alt="logo"/>
             <Image src="/images/logos/philips.png" width={72} height={72} alt="logo"/>

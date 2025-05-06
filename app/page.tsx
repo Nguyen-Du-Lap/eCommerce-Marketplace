@@ -3,6 +3,7 @@ import HomeSlide from "@/components/modules/hero/HomeSlide";
 import Payments from "../components/custom/Payments";
 import BestDeals from "@/components/modules/best-deals";
 import Newsletter from "@/components/modules/newsletter";
+import Footer from "@/components/modules/footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Payments />
       <BestDeals />
       <Newsletter />
+      <Footer/>
     </>
   );
 }

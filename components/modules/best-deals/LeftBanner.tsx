@@ -6,12 +6,13 @@ import React from "react";
 import Rating from "@mui/material/Rating";
 import { RectangleButton } from "@/components/custom/RectangleButton";
 import { ShoppingCartSimple } from "@phosphor-icons/react";
+import { cn } from "@/lib/utils";
 
-export default function LeftBanner() {
+export default function LeftBanner({className}: {className?: string}) {
   return (
-    <div className="border border-gray-100 w-full lg:w-[328px] p-4">
+    <div className={cn("border border-gray-100 w-full lg:w-[328px] p-4 flex flex-col gap-4 sm:flex-row lg:flex-col", className)}>
       {/* image */}
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex justify-center items-start">
         <Image
           src={"./images/products/LeftBanner.svg"}
           height={268}
@@ -28,7 +29,7 @@ export default function LeftBanner() {
         </div>
       </div>
       {/* content */}
-      <div className="flex flex-col p-1">
+      <div className="flex flex-col p-1 gap-2">
         <div className="flex items-center">
           <Rating
             name="hover-feedback"

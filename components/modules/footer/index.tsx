@@ -11,7 +11,7 @@ export default function Footer() {
     <section className="bg-gray-900">
       <Container>
         <div className="flex flex-col text-white py-[72px]">
-          <div className="grid grid-cols-1 md:gird-cols-3 lg:grid-cols-5 gap-[24px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-[24px]">
             {/* Contact */}
             <ul className="flex flex-col gap-3">
               <li className="mb-3">

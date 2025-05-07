@@ -32,6 +32,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </Badge>
       </div>
       <div className="">
+        <Rating name="half-rating-read" defaultValue={4} precision={0.5} readOnly />
         <h3 className="body-S-400 text-gray-900 line-clamp-2 h-[40px] overflow-hidden">
           {product.name}
         </h3>

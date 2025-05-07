@@ -4,6 +4,7 @@ import Payments from "../components/custom/Payments";
 import BestDeals from "@/components/modules/best-deals";
 import Newsletter from "@/components/modules/newsletter";
 import Footer from "@/components/modules/footer";
+import ShopCategory from "@/components/modules/shopcategory";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <HomeSlide />
       <Payments />
       <BestDeals />
+      <ShopCategory />
       <Newsletter />
       <Footer/>
     </>

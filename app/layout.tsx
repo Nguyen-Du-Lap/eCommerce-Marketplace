@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers";
+import Header from "@/components/modules/header";
+import Newsletter from "@/components/modules/newsletter";
+import Footer from "@/components/modules/footer";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
@@ -22,10 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${publicSans.variable} antialiased`}
-      >
-        <Providers>{children}</Providers>
+      <body className={`${publicSans.variable} antialiased`}>
+        <Providers>
+          <Header />
+          {children}
+          <Newsletter />
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

@@ -19,9 +19,11 @@ export default function LanguageCurrency({
 }) {
   const switchLocale = (val: string) => {
     // TODO: change locale
+    console.log(val)
   };
   const switchCurrency = (val: string) => {
     // TODO: change currency
+    console.log(val)
   };
   return (
     <div className={cn(className,"flex items-center")}>

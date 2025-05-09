@@ -1,0 +1,50 @@
+
+.swiper-pagination-bullet-active {
+    background: var(--color-gray-900);
+    width: 40px;
+    border-radius: 10px;
+}
+
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+    left: var(--swiper-navigation-sides-offset, 8px);
+    right: auto;
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev {
+    right: var(--swiper-navigation-sides-offset, 8px);
+    left: auto;
+}
+
+.swiper-button-prev:after {
+    background-color: var(--color-primary-500);
+    font-family: "phosphor";
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "";
+    padding: 0 18px;
+    background-image: url("/images/icons/arrow-left.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+}
+
+.swiper-button-next:after {
+background-color: var(--color-primary-500);
+    font-family: "phosphor";
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "";
+    padding: 0 18px;
+    background-image: url("/images/icons/arrow-right.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+}

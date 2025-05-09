@@ -165,7 +165,7 @@ export default function Footer() {
         </div>
       </Container>
       <div className="text-center body-S-400 text-gray-300 py-6 border-t border-t-gray-800 ">
-        Orion - eCommerce Template © 2024. Design by SylvainCodes
+        Orion - eCommerce Template © 2025. Design by dev nguyen
       </div>
     </section>
   );

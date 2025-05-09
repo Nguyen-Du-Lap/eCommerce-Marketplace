@@ -32,11 +32,11 @@ export default function IconGroup({className}: {className?: string}) {
   };
   return (
     <div className={cn(className)}>
-      <div className="relative text-white cursor-pointer">
+      <div className="relative text-white cursor-pointer group">
         <ShoppingCart size={32} weight="regular" /> 
         <span className="flex items-center justify-center rounded-full place-content-center text-gray-700 h-6 w-6 absolute -top-2 left-5 bg-white font-bold">0</span>   
         {
-          !isMobile && <ShoppingCard className="absolute z-50 -top-[54px] right-0" />
+          !isMobile && <ShoppingCard className="absolute z-50 top-[42px] right-0 hidden group-hover:block before:w-20 before:absolute before:h-20 before:z-51 before:-top-12 before:right-0" />
         }
       </div>
       <div className="relative text-white cursor-pointer">

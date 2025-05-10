@@ -14,11 +14,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Heart, Minus, Plus } from "@phosphor-icons/react";
-import { Share2 } from "lucide-react";
+import { Minus, Plus } from "@phosphor-icons/react";
 import { Rating } from "@mui/material";
 import { Badge } from "@/components/custom/Badge";
 import { RectangleButton } from "@/components/custom/RectangleButton";
+import IconGroup from "./IconGroup";
+import Image from "next/image";
 
 export default function Details({ className }: { className?: string }) {
   const [quantity, setQuantity] = useState(1);
@@ -26,6 +27,7 @@ export default function Details({ className }: { className?: string }) {
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
   return (
     <div className={cn("space-y-6", className)}>
       <div className="mb-4">
@@ -71,7 +73,9 @@ export default function Details({ className }: { className?: string }) {
       <div className="flex items-center space-x-2">
         <div className="heading-3 text-secondary-500">$1699</div>
         <div className="text-gray-500 line-through">$1999.00</div>
-        <Badge variant="discount" className="body-S-600">21% OFF</Badge>
+        <Badge variant="discount" className="body-S-600">
+          21% OFF
+        </Badge>
       </div>
 
       <Separator />
@@ -132,59 +136,62 @@ export default function Details({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center border border-gray-100 rounded-[3px]">
+      <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-4 items-center gap-4 sm:space-x-4">
+        {/* Input số lượng */}
+        <div className="flex items-center justify-center border border-gray-100 rounded-[3px] h-[40px] sm:h-[48px] md:h-[56px]">
           <Button
             variant="ghost"
             size="icon"
-            className="h-[56px] w-10 rounded-none cursor-pointer"
+            className="h-[40px] sm:h-[48px] md:h-[56px] w-8 sm:w-10 rounded-none cursor-pointer"
             onClick={decrementQuantity}
           >
-            <Minus className="h-4 w-4" />
+            <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
-          <span className="w-10 text-center">{quantity}</span>
+          <span className="w-8 sm:w-10 text-center text-sm sm:text-base">
+            {quantity}
+          </span>
           <Button
             variant="ghost"
             size="icon"
-            className="h-[56px] w-10 rounded-none cursor-pointer"
+            className="h-[40px] sm:h-[48px] md:h-[56px] w-8 sm:w-10 rounded-none cursor-pointer"
             onClick={incrementQuantity}
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
         </div>
-        <RectangleButton variant="primary" className="flex-1 h-[56px]">
+
+        {/* Nút ADD TO CART */}
+        <RectangleButton
+          variant="primary"
+          className="h-[40px] sm:h-[48px] md:h-[56px] col-span-1 sm:col-span-2 text-xs sm:text-sm"
+        >
           ADD TO CART
         </RectangleButton>
-        <RectangleButton variant="tertiary" className="h-[56px]">
+
+        {/* Nút BUY NOW */}
+        <RectangleButton
+          variant="tertiary"
+          className="h-[40px] sm:h-[48px] md:h-[56px] text-xs sm:text-sm"
+        >
           BUY NOW
         </RectangleButton>
       </div>
 
-      <div className="flex items-center space-x-4 text-sm">
-        <Button variant="ghost" size="sm" className="flex items-center gap-2">
-          <Heart className="h-4 w-4" />
-          Add to Wishlist
-        </Button>
-        <Separator orientation="vertical" className="h-5" />
-        <Button variant="ghost" size="sm" className="flex items-center gap-2">
-          <Share2 className="h-4 w-4" />
-          Share product
-        </Button>
-      </div>
+      <IconGroup />
 
-      <Card className="mt-6">
-        <CardContent className="p-4">
-          <div className="text-center">
-            <p className="font-medium">100% Guarantee Safe Checkout</p>
-            <div className="flex justify-center space-x-2 mt-2">
-              {["visa", "mastercard", "amex", "paypal", "discover"].map(
-                (payment) => (
-                  <div
-                    key={payment}
-                    className="w-10 h-6 bg-gray-200 rounded"
-                  ></div>
-                )
-              )}
+      <Card className="mt-6 border-gray-100 rounded-[3px] shadow-none p-0">
+        <CardContent className="p-5">
+          <div className="flex flex-col">
+            <p className="body-S-400 text-gray-900">
+              100% Guarantee Safe Checkout
+            </p>
+            <div className="flex space-x-2 mt-2">
+              <Image
+                src="/images/payment_method.png"
+                height={18}
+                width={312}
+                alt="payment method"
+              />
             </div>
           </div>
         </CardContent>

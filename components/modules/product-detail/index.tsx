@@ -4,6 +4,7 @@ import React from "react";
 import ImageGroup from "./ImageGroup";
 import Details from "./Details";
 import Container from "@/components/custom/Container";
+import Info from "./Info";
 
 export default function ProductDetail() {
   return (
@@ -17,6 +18,8 @@ export default function ProductDetail() {
           {/* Product Details */}
           <Details />
         </div>
+        {/* Product Info */}
+        <Info className="mt-10 sm:mt-20"/>
       </Container>
     </section>
   );

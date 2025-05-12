@@ -19,7 +19,7 @@ export default function SidebarMenu({ className }: { className?: string }) {
         </SheetTrigger>
         <SheetContent>
           <Tabs className="p-4">
-            <TabsList>
+            <TabsList className="overflow-hidden">
               <TabsTrigger value="category">Categories</TabsTrigger>
               <TabsTrigger value="pages">Pages</TabsTrigger>
             </TabsList>

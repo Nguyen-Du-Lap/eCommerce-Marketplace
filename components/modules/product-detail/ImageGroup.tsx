@@ -14,13 +14,13 @@ export default function ImageGroup({ className }: { className?: string }) {
   const [currentImage, setCurrentImage] = useState(0);
 
   const images = [
-    "/images/categories/category_1.svg?height=400&width=400",
-    "/images/categories/category_2.svg?height=400&width=400",
-    "/images/categories/category_3.svg?height=400&width=400",
-    "/images/categories/category_4.svg?height=400&width=400",
-    "/images/categories/category_5.svg?height=400&width=400",
-    "/images/categories/category_6.svg?height=400&width=400",
-    "/images/categories/category_5.svg?height=400&width=400",
+    "/images/categories/category_1.svg",
+    "/images/categories/category_2.svg",
+    "/images/categories/category_3.svg",
+    "/images/categories/category_4.svg",
+    "/images/categories/category_5.svg",
+    "/images/categories/category_6.svg",
+    "/images/categories/category_5.svg",
   ];
   return (
     <div className={cn("space-y-4", className)}>
@@ -30,6 +30,9 @@ export default function ImageGroup({ className }: { className?: string }) {
           alt="MacBook Pro"
           fill
           className="object-contain"
+          priority
+          placeholder="empty"
+          blurDataURL="/images/categories/category_2.svg"
         />
       </div>
       <div className="flex space-x-2 overflow-x-auto pb-2"></div>
@@ -83,6 +86,8 @@ export default function ImageGroup({ className }: { className?: string }) {
                 width={96}
                 height={96}
                 className="object-center"
+                placeholder="empty"
+                loading="lazy"
               />
             </div>
           </SwiperSlide>

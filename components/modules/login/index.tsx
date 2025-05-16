@@ -3,9 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-
 import { z } from "zod";
-
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "@phosphor-icons/react";
 import Link from "next/link";
@@ -19,6 +17,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState, useRef } from "react";
 
 const passwordValidation = new RegExp(
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
@@ -34,16 +34,26 @@ const FormSchema = z.object({
     .regex(passwordValidation, {
       message: "Your password is not valid",
     }),
+  recaptcha: z.string().min(1, { message: "Please complete the CAPTCHA" }),
 });
 
 export default function Login({ className }: { className?: string }) {
+  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: "",
       password: "",
+      recaptcha: "",
     },
   });
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaValue(token);
+    form.setValue("recaptcha", token || "");
+  };
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast("You submitted the following values:", {
@@ -53,7 +63,14 @@ export default function Login({ className }: { className?: string }) {
         </pre>
       ),
     });
+    // Reset reCAPTCHA after submission
+    if (recaptchaRef.current) {
+      recaptchaRef.current.reset();
+    }
+    setRecaptchaValue(null);
+    form.setValue("recaptcha", "");
   }
+
   return (
     <section
       className={cn(
@@ -107,10 +124,27 @@ export default function Login({ className }: { className?: string }) {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="recaptcha"
+              render={() => (
+                <FormItem>
+                  <div className="flex justify-center">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey="6LdpszsrAAAAAFVZItngf0ikj_kJX6S8_vNl-G1L" // This is a test key - replace with your actual site key
+                      onChange={handleRecaptchaChange}
+                    />
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <RectangleButton
               type="submit"
               variant={"primary"}
               className="w-full flex items-center justify-center h-12"
+              disabled={!recaptchaValue}
             >
               <span className="heading-5">Login</span>
               <ArrowRight weight="bold" size={20} />
@@ -122,9 +156,7 @@ export default function Login({ className }: { className?: string }) {
                 <span className="body-S-400">Don’t have account</span>
                 <hr className="flex-1 text-gray-100" />
               </div>
-            </div>
-
-            <RectangleButton
+            </div>            <RectangleButton
               variant={"tertiary"}
               className="w-full flex items-center justify-center h-12"
             >

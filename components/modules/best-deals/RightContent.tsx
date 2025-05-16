@@ -1,46 +1,24 @@
 "use client";
 
+import useSWR from 'swr'
 import ProductCard from "@/components/custom/ProductCard";
 import { cn } from "@/lib/utils";
 import React from "react";
+import { ApiListResponse, TypeProductModel } from "@/types";
+import { apiGet } from "@/services/api";
+import { EmptyState, ErrorDisplay, Loading } from '@/components/custom/DataStates';
+
+const fetcher = (url: string) => apiGet<ApiListResponse<TypeProductModel>>(url);
 
 export default function RightContent({className}: {className?: string}) {
-  const mockProducts = [
-    {
-      id: 1,
-      name: "Xbox Series S - 512GB SSD Console with Wireless Controller - EU Version",
-      price: 6990000,
-      image: "/images/products/product_1.svg",
-    },
-    {
-      id: 2,
-      name: "PlayStation 5 Digital Edition",
-      price: 12990000,
-      image: "/images/products/product_1.svg",
-    },
-    {
-      id: 33,
-      name: "PlayStation 5 Digital Edition",
-      price: 12990000,
-      image: "/images/products/product_1.svg",
-    },
-    {
-      id: 44,
-      name: "PlayStation 5 Digital Edition",
-      price: 12990000,
-      image: "/images/products/product_1.svg",
-    },
-    {
-      id: 5,
-      name: "PlayStation 5 Digital Edition",
-      price: 12990000,
-      image: "/images/products/product_1.svg",
-    },
-  ];
+  const { data, error, isLoading } = useSWR('/api/products?page=0&size=8&sort=name', fetcher);
 
+  if (isLoading) return <Loading />;
+  if (error) return <ErrorDisplay message="Failed to load products. Please try again later." />;
+  if (!data || !data.result || data.result.content.length === 0) return <EmptyState />;
   return (
     <div className={cn("flex flex-wrap w-full", className)}>
-      {mockProducts.map((product) => (
+      {data.result.content.map((product : TypeProductModel) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

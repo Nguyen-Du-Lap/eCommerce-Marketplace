@@ -5,27 +5,22 @@ import Link from "next/link";
 import React from "react";
 import { Badge } from "./Badge";
 import { Rating } from "@mui/material";
+import { TypeProductModel } from "@/types";
 
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-};
-
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product }: { product: TypeProductModel }) {
   return (
     <Link
-      href={`/product/${product.id}`}
+      href={`/products/${product.id}`}
       className="border border-gray-100 w-full sm:w-[216px] md:w-[255px] lg:w-[248px] p-4 overflow-hidden hover:border-primary-500 cursor-pointer"
-    >
-      <div className="relative">
+    >      <div className="relative">
         <Image
-          src={product.image}
+          src={product.images[0]?.imageUrl || "/images/carts/cart_1.png"}
           alt={product.name}
-          width={0}
-          height={0}
-          className="w-full"
+          width={300}
+          height={300}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={true}
+          className="w-full h-auto object-contain"
         />
         <Badge variant="soldOut" className="absolute top-2 left-2">
           Sold Out

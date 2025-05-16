@@ -15,21 +15,22 @@ import Link from "next/link";
 import React, { useState } from "react";
 import CategoryList from "./CategoryList";
 import {
-  TypeCategoryModel,
-  TypeProductModel,
-  TypeSlideModel,
+  // TypeCategoryModel,
+  // TypeProductModel,
+  // TypeSlideModel,
 } from "@/types/models";
+import { TypeCategoryModel } from "@/types";
 
 export default function Menus({
   className,
   categories,
-  products,
-  campaigns,
+  // products,
+  // campaigns,
 }: {
   className?: string;
   categories: TypeCategoryModel[];
-  products: TypeProductModel[];
-  campaigns: TypeSlideModel[];
+  // products: TypeProductModel[];
+  // campaigns: TypeSlideModel[];
 }) {
 
   // state
@@ -54,7 +55,13 @@ export default function Menus({
                 }
               </RectangleButton>
               {
-                showCat && (<CategoryList categories={categories} products={products} campaigns={campaigns} />)
+                showCat && (
+                <CategoryList 
+                  categories={categories} 
+                  // products={products} 
+                  // campaigns={campaigns} 
+                  />
+                )
               }
             </div>
 

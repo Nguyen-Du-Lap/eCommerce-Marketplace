@@ -10,12 +10,20 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'orion-api-five.vercel.app'
+        hostname: 'w7.pngwing.com'
       },
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com'
       },
+      {
+        protocol: 'https',
+        hostname: 'example.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      }
     ],
   },
 };

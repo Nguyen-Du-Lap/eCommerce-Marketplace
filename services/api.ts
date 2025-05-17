@@ -9,41 +9,25 @@ const apiClient = axios.create({
   }
 });
 
-// // Interceptor cho request
 // apiClient.interceptors.request.use(
 //   (config) => {
-//     // Thêm token nếu cần
-//     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+//     const token = store.getState().auth.token;
 //     if (token) {
-//       config.headers['Authorization'] = `Bearer ${token}`;
+//       config.headers.Authorization = `Bearer ${token}`;
 //     }
 //     return config;
 //   },
-//   (error) => Promise.reject(error)
+//   (error) => {
+//     return Promise.reject(error);
+//   }
 // );
 
 // Interceptor cho response
 apiClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
-    // Xử lý lỗi chung
-    if (error.response) {
-      // Xử lý lỗi từ server (status codes không phải 2xx)
-      if (error.response.status === 401) {
-        // Xử lý khi token hết hạn
-        if (typeof window !== 'undefined') {
-          // Xóa token và chuyển hướng người dùng về trang đăng nhập
-          localStorage.removeItem('token');
-          window.location.href = '/login';
-        }
-      }
-    } else if (error.request) {
-      // Xử lý khi không nhận được response
-      console.error('No response received:', error.request);
-    } else {
-      // Lỗi khi thiết lập request
-      console.error('Error setting up request:', error.message);
-    }
+    // handle error code
+    console.log('Error response:', error.response);
     return Promise.reject(error);
   }
 );

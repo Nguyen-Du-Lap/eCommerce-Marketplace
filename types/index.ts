@@ -11,6 +11,12 @@ export interface ApiListResponse<T> {
   }
 }
 
+export interface ApiResponse<T> {
+  code: number;
+  message: string;
+  result: T;
+}
+
 export type CartItem = {
     store: string;
     variant: TypeProductVariantModel;
@@ -48,4 +54,24 @@ export type TypeProductModel ={
     createdAt?: Date;
     updatedAt?: Date;
 }
+
+export type TypeLoginModel = {
+    username: string;
+    password: string;
+    recaptchaToken: string;
+}
+
+export type TypeAuthenticationModel = { 
+    token: string;
+    authenticated: boolean;
+}
+
+export type TypeRegisterModel = {
+  username: string;
+  email?: string;
+  password: string;
+  confirmPassword?: string;
+  firstName?: string;
+  lastName?: string;
+};
 

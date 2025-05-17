@@ -7,6 +7,7 @@ import { z } from "zod";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "@phosphor-icons/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/custom/Input";
 import { RectangleButton } from "@/components/custom/RectangleButton";
 import {
@@ -19,56 +20,69 @@ import {
 } from "@/components/ui/form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState, useRef } from "react";
-
-const passwordValidation = new RegExp(
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-);
+import AuthService from "@/services/auth.service";
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  username: z.string().min(4, {
+    message: "Username must be at least 4 characters.",
   }),
   password: z
     .string()
-    .min(1, { message: "Must have at least 1 character" })
-    .regex(passwordValidation, {
-      message: "Your password is not valid",
-    }),
-  recaptcha: z.string().min(1, { message: "Please complete the CAPTCHA" }),
+    .min(4, { message: "Must have at least 4 characters" }),
+  recaptchaToken: z.string().min(1, { message: "Please complete the CAPTCHA" }),
 });
 
 export default function Login({ className }: { className?: string }) {
   const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: "",
       password: "",
-      recaptcha: "",
+      recaptchaToken: "",
     },
   });
 
   const handleRecaptchaChange = (token: string | null) => {
     setRecaptchaValue(token);
-    form.setValue("recaptcha", token || "");
+    form.setValue("recaptchaToken", token || "");
   };
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      setIsLoading(true);
+      const response = await AuthService.login({
+        username: data.username,
+        password: data.password,
+        recaptchaToken: data.recaptchaToken
+      });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-    // Reset reCAPTCHA after submission
-    if (recaptchaRef.current) {
-      recaptchaRef.current.reset();
+      if (response && response.authenticated) {
+        toast.success("Login successful", {
+          description: `Welcome back, ${data.username}!`
+        });
+        
+        router.push('/');
+      }
+    } catch (error) {
+      // Handle login errors
+      console.error("Login error:", error);
+      toast.error("Login failed", { 
+        description: error instanceof Error ? error.message : "Please check your credentials and try again"
+      });
+    } finally {
+      setIsLoading(false);
+      
+      // Reset recaptcha regardless of outcome
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+      }
+      setRecaptchaValue(null);
+      form.setValue("recaptchaToken", "");
     }
-    setRecaptchaValue(null);
-    form.setValue("recaptcha", "");
   }
 
   return (
@@ -126,28 +140,26 @@ export default function Login({ className }: { className?: string }) {
             />
             <FormField
               control={form.control}
-              name="recaptcha"
+              name="recaptchaToken"
               render={() => (
-                <FormItem>
-                  <div className="flex justify-center">
+                <FormItem>                  <div className="flex justify-center">
                     <ReCAPTCHA
                       ref={recaptchaRef}
-                      sitekey="6LdpszsrAAAAAFVZItngf0ikj_kJX6S8_vNl-G1L" // This is a test key - replace with your actual site key
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''} // Fallback to test key if env not available
                       onChange={handleRecaptchaChange}
                     />
                   </div>
                   <FormMessage />
                 </FormItem>
               )}
-            />
-            <RectangleButton
+            />            <RectangleButton
               type="submit"
               variant={"primary"}
               className="w-full flex items-center justify-center h-12"
-              disabled={!recaptchaValue}
+              disabled={!recaptchaValue || isLoading}
             >
-              <span className="heading-5">Login</span>
-              <ArrowRight weight="bold" size={20} />
+              <span className="heading-5">{isLoading ? "Logging in..." : "Login"}</span>
+              {!isLoading && <ArrowRight weight="bold" size={20} />}
             </RectangleButton>
 
             <div className="">
@@ -159,6 +171,7 @@ export default function Login({ className }: { className?: string }) {
             </div>            <RectangleButton
               variant={"tertiary"}
               className="w-full flex items-center justify-center h-12"
+              onClick={() => router.push('/register')}
             >
               <span className="body-S-400">Create account</span>
             </RectangleButton>

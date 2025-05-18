@@ -1,15 +1,24 @@
 import { ApiResponse, TypeAuthenticationModel, TypeLoginModel, TypeRegisterModel } from "@/types";
 import { apiGet, apiPost } from "./api";
+import { JWT_CONFIG } from "@/config/jwt";
+import { toast } from "sonner";
 
 export const AuthService = {
-  login: async (params: TypeLoginModel): Promise<TypeAuthenticationModel> => {
+  login: async (params: TypeLoginModel): Promise<any> => {
     try {
       const response = await apiPost<ApiResponse<TypeAuthenticationModel>>(`/api/auth/login`, params);
       // Store token in cookies (for client-side)
       if (response.result?.token) {
-        document.cookie = `auth-token=${response.result.token}; path=/; max-age=${60 * 60 * 24}; SameSite=Strict`;
+        document.cookie = `${JWT_CONFIG.cookie.name}=${response.result.token}; path=/; max-age=${JWT_CONFIG.cookie.maxAge}; SameSite=Strict`;
       }
-      
+
+      if (response.result?.roles?.includes("ADMIN")) {
+        window.location.href = "/admin";
+      }
+      else {
+        window.location.href = "/";
+      }
+      toast.success("Login successful");
       return response.result;
     } catch (error) {
       console.error('Error logging in:', error);
@@ -20,11 +29,6 @@ export const AuthService = {
   register: async (params: TypeRegisterModel): Promise<TypeAuthenticationModel> => {
     try {
       const response = await apiPost<ApiResponse<TypeAuthenticationModel>>(`/api/auth/register`, params);
-      
-      // Store token in cookies (for client-side)
-      if (response.result?.token) {
-        document.cookie = `auth-token=${response.result.token}; path=/; max-age=${60 * 60 * 24}; SameSite=Strict`;
-      }
       
       return response.result;
     } catch (error) {

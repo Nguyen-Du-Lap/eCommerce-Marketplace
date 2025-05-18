@@ -1,39 +1,34 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import { toast } from 'sonner';
 
 // Tạo instance axios với cấu hình mặc định
 const apiClient = axios.create({
-  baseURL: process.env.API_URL || 'http://localhost:8080',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080',
   timeout: 10000, // Timeout sau 10 giây
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
-// apiClient.interceptors.request.use(
-//   (config) => {
-//     const token = store.getState().auth.token;
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
-
 // Interceptor cho response
 apiClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
-    // handle error code
-    console.log('Error response:', error.response);
+    if (error.response?.status === 401) {
+      console.error('Unauthorized access - redirecting to login');
+      toast.error('Unauthorized access - redirecting to login');
+    }
+    // handle other error codes
+    if (error.response?.status === 404) {
+      console.error('Not found - redirecting to 404 page');
+      toast.error('Not found - redirecting to 404 page');
+    }
     return Promise.reject(error);
   }
 );
 
 // Wrapper functions
-export const apiGet = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+export const apiGet = async <T>(url: string, config?: AxiosRequestConfig,): Promise<T> => {
   try {
     const response: AxiosResponse<T> = await apiClient.get(url, config);
     return response.data;
@@ -43,7 +38,6 @@ export const apiGet = async <T>(url: string, config?: AxiosRequestConfig): Promi
   }
 };
 
-// Thay thế kiểu `any` bằng generic type parameter
 export const apiPost = async <T, D = unknown>(url: string, data?: D, config?: AxiosRequestConfig): Promise<T> => {
   try {
     const response: AxiosResponse<T> = await apiClient.post(url, data, config);
@@ -54,7 +48,6 @@ export const apiPost = async <T, D = unknown>(url: string, data?: D, config?: Ax
   }
 };
 
-// Thay thế kiểu `any` bằng generic type parameter
 export const apiPut = async <T, D = unknown>(url: string, data?: D, config?: AxiosRequestConfig): Promise<T> => {
   try {
     const response: AxiosResponse<T> = await apiClient.put(url, data, config);

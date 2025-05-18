@@ -61,9 +61,12 @@ export type TypeLoginModel = {
     recaptchaToken: string;
 }
 
-export type TypeAuthenticationModel = { 
+export type TypeAuthenticationModel = {
+    id: string;
+    username: string;
     token: string;
     authenticated: boolean;
+    roles: string[];
 }
 
 export type TypeRegisterModel = {
@@ -74,4 +77,19 @@ export type TypeRegisterModel = {
   firstName?: string;
   lastName?: string;
 };
+
+export type TypeUserModel = {
+    id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+    dob: Date;
+    roles: TypeRoleModel[];
+}
+
+export type TypeRoleModel = {
+    name: string;
+    description: string;
+    permissions: string[];
+}
 

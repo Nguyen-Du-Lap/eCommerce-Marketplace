@@ -54,19 +54,12 @@ export default function Login({ className }: { className?: string }) {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
       setIsLoading(true);
-      const response = await AuthService.login({
+      await AuthService.login({
         username: data.username,
         password: data.password,
         recaptchaToken: data.recaptchaToken
       });
 
-      if (response && response.authenticated) {
-        toast.success("Login successful", {
-          description: `Welcome back, ${data.username}!`
-        });
-        
-        router.push('/');
-      }
     } catch (error) {
       // Handle login errors
       console.error("Login error:", error);

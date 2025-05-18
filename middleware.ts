@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { JWT_CONFIG } from './config/jwt';
 
 // Define paths that don't require authentication
 const publicPaths = [
@@ -27,7 +28,7 @@ const isPublicPath = (path: string) => {
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   
-  const token = request.cookies.get('auth-token')?.value;
+  const token = request.cookies.get(JWT_CONFIG.cookie.name)?.value;
   
   const isPublic = isPublicPath(path);
   const hasToken = !!token;

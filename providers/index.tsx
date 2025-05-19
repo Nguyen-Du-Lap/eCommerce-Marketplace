@@ -13,7 +13,7 @@ export default function Providers({
   return (
     <StateProvider>
       <FramerMotionProvider>
-        <Toaster position="top-center" richColors /> {children}
+          <Toaster position="top-center" richColors /> {children}
       </FramerMotionProvider>
     </StateProvider>
   );

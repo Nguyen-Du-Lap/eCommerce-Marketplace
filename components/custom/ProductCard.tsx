@@ -6,13 +6,14 @@ import React from "react";
 import { Badge } from "./Badge";
 import { Rating } from "@mui/material";
 import { TypeProductModel } from "@/types";
+import { cn } from "@/lib/utils";
 
-export default function ProductCard({ product }: { product: TypeProductModel }) {
+export default function ProductCard({ className, product }: { product: TypeProductModel, className?: string }) {
   return (
     <Link
       href={`/products/${product.id}`}
-      className="border border-gray-100 w-full sm:w-[216px] md:w-[255px] lg:w-[248px] p-4 overflow-hidden hover:border-primary-500 cursor-pointer"
-    >      <div className="relative">
+      className={cn("border border-gray-100 w-full sm:w-[216px] md:w-[255px] lg:w-[248px] p-4 overflow-hidden hover:border-primary-500 cursor-pointer", className)}>
+        <div className="relative">
         <Image
           src={product.images[0]?.imageUrl || "/images/carts/cart_1.png"}
           alt={product.name}

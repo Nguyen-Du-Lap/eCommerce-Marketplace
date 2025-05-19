@@ -16,7 +16,7 @@ export default function Page() {
       <CustomBreadcrumb items={breadcrumbItems} />
       <Container>
         {/* wrap */}
-        <div className="flex items-center justify-center h-[calc(100vh-200px)]">
+        <div className="flex items-center justify-center h-[calc(100vh-100px)]">
           <Login />
         </div>
       </Container>

@@ -18,10 +18,12 @@ export default function SearchInput({ className }: { className?: string }) {
   const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const search = e.currentTarget.value;
     if(search.length>1) {
+      console.log("searching for: ", search);
       await axios
-      .get(process.env.NEXT_PUBLIC_API_URL + "/api/public/products", { 
+      .get(process.env.NEXT_PUBLIC_API_URL + "/api/products", { 
         params: { search } 
       }).then((response) => {
+        console.log(response.data)
         setData(response.data.data)
       })
       .catch((err) => console.log(err))

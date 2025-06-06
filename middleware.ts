@@ -9,6 +9,7 @@ const publicPaths = [
   '/forget-password',
   '/api/public',
   '/products',
+  '/learn',
 ];
 
 // Checks if a path should be public or protected

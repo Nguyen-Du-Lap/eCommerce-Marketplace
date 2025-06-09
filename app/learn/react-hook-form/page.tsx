@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 let renderCount = 0;
@@ -37,9 +37,14 @@ export default function YoutubeForm() {
       age: 0,
       dob: new Date(),
     },
+    mode: "all",
   });
-  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
-  const { errors } = formState;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue, reset, trigger } = form;
+  const { errors, isDirty, isValid, isSubmitting, isSubmitted, isSubmitSuccessful, submitCount } = formState;
+  
+  console.log(isSubmitting, isSubmitted, isSubmitSuccessful, submitCount);
+
+  // console.log("isDirty:", isDirty, "isValid:", isValid);
 
   const { fields, append, remove } = useFieldArray({
     name: "phNumbers",
@@ -49,6 +54,11 @@ export default function YoutubeForm() {
   const onSubmit = (data: FormValues) => {
     console.log(data);
   };
+
+  const onError = (errors: FieldErrors) => {
+    console.log("Form errors:", errors);
+  };
+
   useEffect(() => {
     const subscription = watch((value) => {
       console.log("Form value changed:", value);
@@ -57,6 +67,12 @@ export default function YoutubeForm() {
       subscription.unsubscribe();
     };
   }, [watch]);
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset()
+    }
+  }, [isSubmitSuccessful, reset]);
 
   const handleGetValues = () => {
     const values = getValues();
@@ -70,7 +86,7 @@ export default function YoutubeForm() {
       <h2 className="text-2xl font-bold mb-6">
         YouTube Form {renderCount / 2}
       </h2>
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form className="space-y-4" onSubmit={handleSubmit(onSubmit, onError)} noValidate>
         <div>
           <label
             htmlFor="username"
@@ -225,6 +241,7 @@ export default function YoutubeForm() {
             className="w-full px-3 py-2 border border-gray-300 rounded-md"
             placeholder="Enter your phone number"
             {...register("phoneNumber.1", {
+              disabled: true,
               required: "Phone number is required",
             })}
           />
@@ -316,6 +333,7 @@ export default function YoutubeForm() {
 
         <button
           type="submit"
+          disabled={!isDirty || !isValid || isSubmitting}
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors"
         >
           Submit
@@ -333,6 +351,20 @@ export default function YoutubeForm() {
           onClick={() => setValue("username", "", { shouldDirty: true, shouldTouch: true , shouldValidate: true})}
         >
           Set Username to Superman
+        </button>
+        <button
+          type="button"
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-md transition-colors mt-2"
+          onClick={() => reset()}
+        >
+          Reset Form
+        </button>
+        <button
+          type="button"
+          className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-4 rounded-md transition-colors mt-2"
+          onClick={() => trigger("channel")}
+        >
+          Validate channel
         </button>
       </form>
       <DevTool control={control} />

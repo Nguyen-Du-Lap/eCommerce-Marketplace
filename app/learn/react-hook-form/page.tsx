@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
@@ -38,7 +38,7 @@ export default function YoutubeForm() {
       dob: new Date(),
     },
   });
-  const { register, control, handleSubmit, formState } = form;
+  const { register, control, handleSubmit, formState, watch } = form;
   const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
@@ -49,6 +49,14 @@ export default function YoutubeForm() {
   const onSubmit = (data: FormValues) => {
     console.log(data);
   };
+  useEffect(() => {
+    const subscription = watch((value) => {
+      console.log("Form value changed:", value);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [watch]);
 
   renderCount++;
 
@@ -57,7 +65,6 @@ export default function YoutubeForm() {
       <h2 className="text-2xl font-bold mb-6">
         YouTube Form {renderCount / 2}
       </h2>
-
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
         <div>
           <label

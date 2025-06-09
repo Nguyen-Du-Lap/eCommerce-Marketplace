@@ -22,7 +22,8 @@ export default function SearchInput({ className }: { className?: string }) {
 
   const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const search = e.currentTarget.value;
-    setSearch(search);
+
+    if (search) setSearch(search);
   }
 
   useEffect(() => {

@@ -38,7 +38,7 @@ export default function YoutubeForm() {
       dob: new Date(),
     },
   });
-  const { register, control, handleSubmit, formState, watch } = form;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
   const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
@@ -57,6 +57,11 @@ export default function YoutubeForm() {
       subscription.unsubscribe();
     };
   }, [watch]);
+
+  const handleGetValues = () => {
+    const values = getValues();
+    console.log("Current form values:", values);
+  }
 
   renderCount++;
 
@@ -314,6 +319,20 @@ export default function YoutubeForm() {
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors"
         >
           Submit
+        </button>
+        <button
+          type="button"
+          className="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-md transition-colors mt-2"
+          onClick={handleGetValues}
+        >
+          Get Current Values
+        </button>
+        <button
+          type="button"
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-md transition-colors mt-2"
+          onClick={() => setValue("username", "", { shouldDirty: true, shouldTouch: true , shouldValidate: true})}
+        >
+          Set Username to Superman
         </button>
       </form>
       <DevTool control={control} />

@@ -4,6 +4,7 @@ import React from "react";
 import FramerMotionProvider from "./framer-motion-provider";
 import StateProvider from "./state-provider";
 import { Toaster } from "sonner";
+import CustomQueryClientProvider from "./query-client-provider";
 
 export default function Providers({
   children,
@@ -12,9 +13,11 @@ export default function Providers({
 }) {
   return (
     <StateProvider>
-      <FramerMotionProvider>
-          <Toaster position="top-center" richColors /> {children}
-      </FramerMotionProvider>
+      <CustomQueryClientProvider>
+        <FramerMotionProvider>
+            <Toaster position="top-center" richColors /> {children}
+        </FramerMotionProvider>
+      </CustomQueryClientProvider>
     </StateProvider>
   );
 }

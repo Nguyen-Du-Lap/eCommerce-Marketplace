@@ -52,6 +52,17 @@ export default function PageReactQuery() {
   console.log("isLoading:", isLoading, "isFetching:", isFetching);
   return (
     <Container>
+      <h1>Navbar learn react query </h1>
+      <nav>
+        <ul className="flex space-x-4 bg-amber-200">
+          <li><Link href="/learn/react-query">Home</Link></li>
+          <li><Link href="/learn/react-query/parallel-query">Parallel Query</Link></li>
+          <li><Link href="/learn/react-query/dependent-query">Dependent Query</Link></li>
+          <li><Link href="/learn/react-query/dynamic-parallel-query">Dynamic Parallel Query</Link></li>
+          <li><Link href="/learn/react-query/paginated-query">Paginated Query</Link></li>
+          <li><Link href="/learn/react-query/initial-query">Initial Query</Link></li>
+        </ul>
+      </nav>
       <h1>Product List</h1>
       <button onClick={() => refetch()} className="bg-blue-500 text-white px-4 py-2 rounded">
         Refetch Products

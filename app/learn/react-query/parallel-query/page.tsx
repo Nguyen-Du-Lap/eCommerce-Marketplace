@@ -1,5 +1,6 @@
 'use client';
 
+import Container from '@/components/custom/Container';
 import { TypeCategoryModel, TypeProductModel } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -34,7 +35,7 @@ export default function ParallelQueryPage(){
         return <div>Error loading categories: {(errorCategories as Error).message}</div>;
     }
     return (
-        <div>
+        <Container>
             <h1>Parallel Query Example</h1>
             <div>
                 <h2>Products</h2>
@@ -52,6 +53,6 @@ export default function ParallelQueryPage(){
                     ))}
                 </ul>
             </div>
-        </div>
+        </Container>
     );
 };

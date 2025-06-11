@@ -1,5 +1,6 @@
 'use client';
 
+import Container from '@/components/custom/Container';
 import { useQueries } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
@@ -16,8 +17,8 @@ export default function DynamicParallelQueryPage(){
         }))
     })
     return (
-        <div>
+        <Container>
             <h1>Dynamic Parallel Query Example</h1>
-        </div>
+        </Container>
     );
 };

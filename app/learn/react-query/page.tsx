@@ -61,6 +61,7 @@ export default function PageReactQuery() {
           <li><Link href="/learn/react-query/dynamic-parallel-query">Dynamic Parallel Query</Link></li>
           <li><Link href="/learn/react-query/paginated-query">Paginated Query</Link></li>
           <li><Link href="/learn/react-query/initial-query">Initial Query</Link></li>
+          <li><Link href="/learn/react-query/mutations">Mutations</Link></li>
         </ul>
       </nav>
       <h1>Product List</h1>

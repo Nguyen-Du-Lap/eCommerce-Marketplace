@@ -21,6 +21,7 @@ import {
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState, useRef } from "react";
 import AuthService from "@/services/auth.service";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 const FormSchema = z.object({
   username: z.string().min(4, {
@@ -37,6 +38,7 @@ export default function Login({ className }: { className?: string }) {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { setItem: setToken } = useLocalStorage("token")
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -54,11 +56,12 @@ export default function Login({ className }: { className?: string }) {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
       setIsLoading(true);
-      await AuthService.login({
+      const user = await AuthService.login({
         username: data.username,
         password: data.password,
         recaptchaToken: data.recaptchaToken
       });
+      setToken(user.token);
 
     } catch (error) {
       // Handle login errors

@@ -31,6 +31,11 @@ export type TypeCategoryModel = {
     description: string;
 }
 
+export type TypeCreateCategoryModel = {
+    name: string;
+    description: string;
+}
+
 export type TypeImageModel = {
     id: string;
     imageUrl: string;

@@ -60,6 +60,17 @@ export type TypeProductModel ={
     updatedAt?: Date;
 }
 
+export type TypeFormProduct = {
+    id: string;
+    name: string;
+    categoryId: string;
+    description: string;
+    price: number;
+    stock: number;
+    brandId: string;
+    storeId: string;
+}
+
 export type TypeLoginModel = {
     username: string;
     password: string;
@@ -97,4 +108,15 @@ export type TypeRoleModel = {
     description: string;
     permissions: string[];
 }
+
+export type TypeBrandModel = {
+    id: string;
+    name: string;
+    description: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+}
+
+
+
 

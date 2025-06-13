@@ -21,6 +21,10 @@ export const request = async ({withAuth = true, ...options}) => {
         if (error.response?.status === 401) {
             console.error('Unauthorized access - redirecting to login');
             // Handle unauthorized error, e.g., redirect to login page
+            localStorage.removeItem('token'); // Clear token on unauthorized access
+            // remove token from cookies
+            document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+            document.cookie = 'auth-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
             window.location.href = '/login';
         } else if (error.response?.status === 404) {
             console.error('Not found - redirecting to 404 page');

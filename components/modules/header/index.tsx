@@ -1,11 +1,14 @@
+"use client";
+
 import React from "react";
 import SocialMenu from "./SocialMenu";
 import MainMenu from "./MainMenu";
 import Menus from "./Menus";
-import CategoryService from "@/services/category.service";
+import { useCategoryGet } from "@/hooks/useCategoryData";
 
-export default async function Header() {
-  const categories = await CategoryService.getCategories();
+export default function Header() {
+  const { data } = useCategoryGet();
+  const categories = data?.data.result.content || [];
   return (
     <header>
       <SocialMenu className="hidden lg:block" />
